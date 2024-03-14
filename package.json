@@ -1,0 +1,30 @@
+{
+  "name": "@xiangfa/polly",
+  "version": "0.1.0",
+  "description": "A high-quality & reliable TTS/STT library for Server and Browser",
+  "main": "./build/index.js",
+  "module": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "start": "tsc --watch",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "Amery2010 <amery@xiangfa.org>",
+  "license": "GPL-3.0-only",
+  "dependencies": {
+    "lodash-es": "^4.17.21",
+    "query-string": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.12",
+    "@types/node": "^20.11.27",
+    "typescript": "^5.4.2"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  }
+}
