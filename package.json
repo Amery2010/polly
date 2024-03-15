@@ -2,14 +2,14 @@
   "name": "@xiangfa/polly",
   "version": "0.1.1",
   "description": "A high-quality & reliable TTS/STT library for Server and Browser",
-  "main": "./build/index.js",
-  "module": "./build/index.js",
-  "types": "./build/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "sideEffects": false,
   "type": "module",
   "scripts": {
     "start": "tsc --watch",
-    "build": "rimraf ./build && tsc"
+    "build": "rimraf ./dist && tsc"
   },
   "keywords": [],
   "author": "Amery2010 <amery@xiangfa.org>",
