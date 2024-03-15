@@ -1,46 +1,55 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MicrosoftSpeechTTS = void 0;
-const styleList_1 = __importDefault(require("../constants/styleList"));
-const voiceList_1 = __importDefault(require("../constants/voiceList"));
-const common_1 = require("../utils/common");
-const createMicrosoftSpeech_1 = require("./createMicrosoftSpeech");
-const azureVoiceList_1 = __importDefault(require("./azureVoiceList"));
-const options_1 = require("./options");
-class MicrosoftSpeechTTS {
-    constructor({ locale } = {}) {
+var tslib_1 = require("tslib");
+var styleList_1 = tslib_1.__importDefault(require("../constants/styleList"));
+var voiceList_1 = tslib_1.__importDefault(require("../constants/voiceList"));
+var common_1 = require("../utils/common");
+var createMicrosoftSpeech_1 = require("./createMicrosoftSpeech");
+var azureVoiceList_1 = tslib_1.__importDefault(require("./azureVoiceList"));
+var options_1 = require("./options");
+var MicrosoftSpeechTTS = /** @class */ (function () {
+    function MicrosoftSpeechTTS(_a) {
+        var _b = _a === void 0 ? {} : _a, locale = _b.locale;
         this.locale = locale;
     }
-    get voiceOptions() {
-        return (0, options_1.getAzureVoiceOptions)(this.locale);
-    }
-    create(payload) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield (0, createMicrosoftSpeech_1.createMicrosoftSpeech)({ payload });
+    Object.defineProperty(MicrosoftSpeechTTS.prototype, "voiceOptions", {
+        get: function () {
+            return (0, options_1.getAzureVoiceOptions)(this.locale);
+        },
+        enumerable: false,
+        configurable: true
+    });
+    MicrosoftSpeechTTS.prototype.create = function (payload) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, (0, createMicrosoftSpeech_1.createMicrosoftSpeech)({ payload: payload })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
         });
-    }
-    createAudio(payload) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.create(payload);
-            const arrayBuffer = yield response.arrayBuffer();
-            return (0, common_1.arrayBufferConvert)(arrayBuffer);
+    };
+    MicrosoftSpeechTTS.prototype.createAudio = function (payload) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var response, arrayBuffer;
+            return tslib_1.__generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.create(payload)];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.arrayBuffer()];
+                    case 2:
+                        arrayBuffer = _a.sent();
+                        return [2 /*return*/, (0, common_1.arrayBufferConvert)(arrayBuffer)];
+                }
+            });
         });
-    }
-}
+    };
+    MicrosoftSpeechTTS.createRequest = createMicrosoftSpeech_1.createMicrosoftSpeech;
+    MicrosoftSpeechTTS.voiceList = azureVoiceList_1.default;
+    MicrosoftSpeechTTS.voiceName = voiceList_1.default;
+    MicrosoftSpeechTTS.styleList = styleList_1.default;
+    return MicrosoftSpeechTTS;
+}());
 exports.MicrosoftSpeechTTS = MicrosoftSpeechTTS;
-MicrosoftSpeechTTS.createRequest = createMicrosoftSpeech_1.createMicrosoftSpeech;
-MicrosoftSpeechTTS.voiceList = azureVoiceList_1.default;
-MicrosoftSpeechTTS.voiceName = voiceList_1.default;
-MicrosoftSpeechTTS.styleList = styleList_1.default;

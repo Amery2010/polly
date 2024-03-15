@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getRecordMineType = void 0;
-const getRecordMineType = () => {
+var getRecordMineType = function () {
     try {
         return MediaRecorder.isTypeSupported("audio/webm")
             ? {

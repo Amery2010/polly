@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const edgeVoiceList = {
+var edgeVoiceList = {
     "ar-SA": ["ar-SA-HamedNeural", "ar-SA-ZariyahNeural"],
     "de-DE": [
         "de-DE-AmalaNeural",

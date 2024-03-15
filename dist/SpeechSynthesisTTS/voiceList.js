@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const voiceList = {
+var voiceList = {
     "ar-SA": ["Majed"],
     "de-DE": [
         "Anna",

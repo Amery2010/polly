@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getOpenaiVoiceOptions = void 0;
-const voiceList = [
+var voiceList = [
     "alloy",
     "echo",
     "fable",
@@ -10,7 +10,7 @@ const voiceList = [
     "shimmer",
 ];
 exports.default = voiceList;
-const getOpenaiVoiceOptions = () => {
-    return voiceList.map((voice) => ({ label: voice, value: voice }));
+var getOpenaiVoiceOptions = function () {
+    return voiceList.map(function (voice) { return ({ label: voice, value: voice }); });
 };
 exports.getOpenaiVoiceOptions = getOpenaiVoiceOptions;

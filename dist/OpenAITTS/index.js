@@ -1,87 +1,82 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OpenAITTS = void 0;
-const voiceList_1 = __importStar(require("./voiceList"));
-const common_1 = require("../utils/common");
-class OpenAITTS {
-    constructor(api = {}) {
+var tslib_1 = require("tslib");
+var voiceList_1 = tslib_1.__importStar(require("./voiceList"));
+var common_1 = require("../utils/common");
+var OpenAITTS = /** @class */ (function () {
+    function OpenAITTS(api) {
+        if (api === void 0) { api = {}; }
         this.OPENAI_BASE_URL = api.OPENAI_PROXY_URL || "https://api.openai.com/v1";
         this.OPENAI_API_KEY = api.OPENAI_API_KEY;
         this.serviceUrl = api.serviceUrl;
         this.headers = api.headers;
     }
-    get voiceOptions() {
-        return (0, voiceList_1.getOpenaiVoiceOptions)();
-    }
-    fetch(payload) {
-        return __awaiter(this, void 0, void 0, function* () {
+    Object.defineProperty(OpenAITTS.prototype, "voiceOptions", {
+        get: function () {
+            return (0, voiceList_1.getOpenaiVoiceOptions)();
+        },
+        enumerable: false,
+        configurable: true
+    });
+    OpenAITTS.prototype.fetch = function (payload) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var url;
             var _a;
-            const url = `${this.OPENAI_BASE_URL}/audio/speech`;
-            return this.serviceUrl
-                ? fetch(this.serviceUrl, {
-                    body: JSON.stringify(payload),
-                    headers: this.headers,
-                    method: "POST",
-                })
-                : fetch(url, {
-                    body: JSON.stringify({
-                        input: payload.input,
-                        model: ((_a = payload.options) === null || _a === void 0 ? void 0 : _a.model) || "tts-1",
-                        voice: payload.options.voice,
-                    }),
-                    headers: new Headers({
-                        Authorization: `Bearer ${this.OPENAI_API_KEY}`,
-                        "Content-Type": "application/json",
-                    }),
-                    method: "POST",
-                });
+            return tslib_1.__generator(this, function (_b) {
+                url = "".concat(this.OPENAI_BASE_URL, "/audio/speech");
+                return [2 /*return*/, this.serviceUrl
+                        ? fetch(this.serviceUrl, {
+                            body: JSON.stringify(payload),
+                            headers: this.headers,
+                            method: "POST",
+                        })
+                        : fetch(url, {
+                            body: JSON.stringify({
+                                input: payload.input,
+                                model: ((_a = payload.options) === null || _a === void 0 ? void 0 : _a.model) || "tts-1",
+                                voice: payload.options.voice,
+                            }),
+                            headers: new Headers({
+                                Authorization: "Bearer ".concat(this.OPENAI_API_KEY),
+                                "Content-Type": "application/json",
+                            }),
+                            method: "POST",
+                        })];
+            });
         });
-    }
-    create(payload) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.fetch(payload);
-            return response;
+    };
+    OpenAITTS.prototype.create = function (payload) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var response;
+            return tslib_1.__generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.fetch(payload)];
+                    case 1:
+                        response = _a.sent();
+                        return [2 /*return*/, response];
+                }
+            });
         });
-    }
-    createAudio(payload) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.create(payload);
-            const arrayBuffer = yield response.arrayBuffer();
-            return yield (0, common_1.arrayBufferConvert)(arrayBuffer);
+    };
+    OpenAITTS.prototype.createAudio = function (payload) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var response, arrayBuffer;
+            return tslib_1.__generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.create(payload)];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.arrayBuffer()];
+                    case 2:
+                        arrayBuffer = _a.sent();
+                        return [4 /*yield*/, (0, common_1.arrayBufferConvert)(arrayBuffer)];
+                    case 3: return [2 /*return*/, _a.sent()];
+                }
+            });
         });
-    }
-}
+    };
+    OpenAITTS.voiceList = voiceList_1.default;
+    return OpenAITTS;
+}());
 exports.OpenAITTS = OpenAITTS;
-OpenAITTS.voiceList = voiceList_1.default;

@@ -1,12 +1,12 @@
 {
   "name": "@xiangfa/polly",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "description": "A high-quality & reliable TTS/STT library for Server and Browser",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "sideEffects": false,
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "start": "tsc --watch",
     "build": "rimraf ./dist && tsc"
@@ -16,7 +16,8 @@
   "license": "GPL-3.0-only",
   "dependencies": {
     "lodash-es": "^4.17.21",
-    "query-string": "^9.0.0"
+    "query-string": "^9.0.0",
+    "tslib": "^2.6.2"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.12",
