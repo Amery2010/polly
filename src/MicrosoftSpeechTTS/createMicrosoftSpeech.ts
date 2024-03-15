@@ -15,12 +15,12 @@ export interface MicrosoftSpeechPayload {
   options: SsmlOptions;
 }
 
-interface CreateMicrosoftSpeechOptions {
-  payload: MicrosoftSpeechPayload;
-}
-
 export const createMicrosoftSpeech = async (
-  { payload }: CreateMicrosoftSpeechOptions,
+  {
+    payload,
+  }: {
+    payload: MicrosoftSpeechPayload;
+  },
   { proxyUrl }: { proxyUrl?: string } = {}
 ) => {
   const { input, options } = payload;

@@ -52,12 +52,12 @@ const genHeader = (connectId: string) => {
   };
 };
 
-export interface CreateEdgeSpeechCompletionOptions {
-  payload: EdgeSpeechPayload;
-}
-
 export const createEdgeSpeech = async (
-  { payload }: CreateEdgeSpeechCompletionOptions,
+  {
+    payload,
+  }: {
+    payload: EdgeSpeechPayload;
+  },
   { proxyUrl, token }: { proxyUrl?: string; token?: string } = {}
 ): Promise<Response> => {
   const { input, options } = payload;
