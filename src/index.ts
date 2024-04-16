@@ -14,6 +14,10 @@ export {
   type OpenAISTTPayload,
 } from "./OpenAISTT";
 export {
+  SpeechRecognitionSTT,
+  type SpeechRecognitionSTTPayload,
+} from "./SpeechRecognitionSTT";
+export {
   OpenAITTS,
   type OpenAITTSAPI,
   type OpenAITTSPayload,

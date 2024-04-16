@@ -1,4 +1,4 @@
-import { flatten } from "lodash-es";
+import { flat } from "radash";
 import speechSynthesisVoiceList from "./voiceList";
 
 const getSpeechSynthesis = () => {
@@ -26,7 +26,7 @@ export const getSpeechSynthesisVoiceOptions = (locale?: string) => {
   const data: string[] =
     locale && voiceList?.[locale]
       ? voiceList?.[locale] || []
-      : flatten(Object.values(voiceList));
+      : flat(Object.values(voiceList));
 
   return data.map((voice) => ({ label: voice, value: voice }));
 };

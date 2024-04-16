@@ -1,28 +1,20 @@
-import { isFunction } from "lodash-es";
+import { isFunction } from "radash";
 
-type Option = {
+export interface SpeechRecognitionSTTPayload {
   autoStop: boolean;
   onUpdate?: (text: string) => void;
-};
+}
 
-const getSpeechRecognition = () => {
-  try {
-    return (
-      (window as any)?.SpeechRecognition ||
-      (window as any)?.webkitSpeechRecognition
-    );
-  } catch {}
-};
-
-const SpeechRecognition = getSpeechRecognition();
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
 
 export class SpeechRecognitionSTT {
-  protected isLoading = false;
-  protected isFinalStop = false;
-  protected text = "";
-  protected autoStop = false;
+  public isLoading: boolean = false;
+  public isFinalStop: boolean = false;
+  public text: string = "";
+  protected autoStop: boolean = false;
   protected onUpdate(text: string) {}
-  constructor({ autoStop, onUpdate }: Option) {
+  constructor({ autoStop, onUpdate }: SpeechRecognitionSTTPayload) {
     this.autoStop = autoStop;
     if (isFunction(onUpdate)) this.onUpdate = onUpdate;
   }
