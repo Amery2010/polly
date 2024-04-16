@@ -1,30 +1,38 @@
 import { isFunction } from "radash";
 
 export interface SpeechRecognitionPayload {
+  locale?: string;
   autoStop?: boolean;
   onUpdate?: (text: string) => void;
   onFinish?: (text: string) => void;
 }
 
-const BrowserSpeechRecognition =
-  window.SpeechRecognition || window.webkitSpeechRecognition;
-
 export class SpeechRecognition {
   public speechRecognition;
+  public locale: string = "en-US";
   public isRecording: boolean = false;
   public text: string = "";
   protected autoStop: boolean = false;
   protected onUpdate(text: string) {}
   protected onFinish(text: string) {}
-  constructor({ autoStop, onUpdate, onFinish }: SpeechRecognitionPayload = {}) {
+  constructor({
+    locale,
+    autoStop,
+    onUpdate,
+    onFinish,
+  }: SpeechRecognitionPayload = {}) {
+    if (locale) this.locale = locale;
     if (autoStop) this.autoStop = autoStop;
     if (isFunction(onUpdate)) this.onUpdate = onUpdate;
     if (isFunction(onFinish)) this.onFinish = onFinish;
     this.speechRecognition = this.create();
   }
   protected create() {
+    const BrowserSpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
     const speechRecognition = new BrowserSpeechRecognition();
 
+    speechRecognition.lang = this.locale;
     speechRecognition.interimResults = true;
     speechRecognition.continuous = true;
     speechRecognition.addEventListener("start", () => {
@@ -42,7 +50,7 @@ export class SpeechRecognition {
         this.text = value;
         this.onUpdate(value);
       }
-      if (result.isFinal) {
+      if (result.isFinal && this.autoStop) {
         speechRecognition.abort();
       }
     });
@@ -53,6 +61,6 @@ export class SpeechRecognition {
     this.speechRecognition.start();
   }
   public stop() {
-    this.speechRecognition.stop();
+    this.speechRecognition.abort();
   }
 }
