@@ -16,7 +16,7 @@ export interface MicrosoftSpeechAPI {
   serviceUrl?: string;
 }
 
-export class MicrosoftSpeechTTS {
+export class MicrosoftSpeech {
   private locale?: string;
 
   constructor({ locale }: MicrosoftSpeechAPI = {}) {

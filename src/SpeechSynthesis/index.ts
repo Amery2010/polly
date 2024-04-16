@@ -1,7 +1,7 @@
 import { getSpeechSynthesisVoiceOptions } from "./options";
 import speechSynthesisVoiceList from "./voiceList";
 
-export class SpeechSynthesisTTS {
+export class SpeechSynthesis {
   private locale?: string;
   constructor(locale?: string) {
     this.locale = locale;

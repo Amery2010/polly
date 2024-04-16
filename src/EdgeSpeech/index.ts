@@ -11,7 +11,7 @@ export interface EdgeSpeechAPI {
   locale?: string;
 }
 
-export class EdgeSpeechTTS {
+export class EdgeSpeech {
   private locale?: string;
   constructor({ locale }: EdgeSpeechAPI = {}) {
     this.locale = locale;

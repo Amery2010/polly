@@ -1,29 +1,29 @@
 export {
   type EdgeSpeechAPI,
   type EdgeSpeechPayload,
-  EdgeSpeechTTS,
-} from "./EdgeSpeechTTS";
+  EdgeSpeech,
+} from "./EdgeSpeech";
 export {
   type MicrosoftSpeechAPI,
   type MicrosoftSpeechPayload,
-  MicrosoftSpeechTTS,
-} from "./MicrosoftSpeechTTS";
+  MicrosoftSpeech,
+} from "./MicrosoftSpeech";
 export {
   OpenaiSTT,
   type OpenAISTTAPI,
   type OpenAISTTPayload,
 } from "./OpenAISTT";
 export {
-  SpeechRecognitionSTT,
-  type SpeechRecognitionSTTPayload,
-} from "./SpeechRecognitionSTT";
-export {
   OpenAITTS,
   type OpenAITTSAPI,
   type OpenAITTSPayload,
   type OpenaiVoice,
 } from "./OpenAITTS";
-export { SpeechSynthesisTTS } from "./SpeechSynthesisTTS";
+export {
+  SpeechRecognition,
+  type SpeechRecognitionPayload,
+} from "./SpeechRecognition";
+export { SpeechSynthesis } from "./SpeechSynthesis";
 export {
   getRecordMineType,
   type RecordMineType,
