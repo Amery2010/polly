@@ -1,4 +1,5 @@
 import { isFunction } from "radash";
+import { RecordMineType } from "../utils/getRecordMineType";
 
 export interface AudioRecorderPayload {
   autoRecord?: boolean;
@@ -8,11 +9,6 @@ export interface AudioRecorderPayload {
   onTimeUpdate?: (time: number) => void;
   onFinish?: (audioData: Blob) => void;
   onError?: (err: Error) => void;
-}
-
-export interface RecordMineType {
-  extension: "webm" | "mp4";
-  mineType: "audio/webm" | "audio/mp4";
 }
 
 export class AudioRecorder {

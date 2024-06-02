@@ -28,3 +28,4 @@ export {
   getRecordMineType,
   type RecordMineType,
 } from "./utils/getRecordMineType";
+export { AudioRecorder, type AudioRecorderPayload } from "./AudioRecorder";

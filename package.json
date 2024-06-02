@@ -1,6 +1,6 @@
 {
   "name": "@xiangfa/polly",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "A high-quality & reliable TTS/STT library for Server and Browser",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
