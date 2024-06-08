@@ -5,7 +5,7 @@ export interface AudioRecorderPayload {
   autoRecord?: boolean;
   volumeThreshold?: number;
   silenceThreshold?: number;
-  onUpadte?: (audioData: Blob) => void;
+  onStart?: () => void;
   onTimeUpdate?: (time: number) => void;
   onFinish?: (audioData: Blob) => void;
   onError?: (err: Error) => void;
@@ -20,7 +20,7 @@ export class AudioRecorder {
   protected volumeThreshold: number = 30;
   protected silenceThreshold: number = 2000;
   protected autoRecord: boolean = false;
-  protected onUpadte(audioData: Blob) {}
+  protected onStart() {}
   protected onTimeUpdate(time: number) {}
   protected onFinish(audioData: Blob) {}
   protected onError(err: Error) {}
@@ -56,7 +56,7 @@ export class AudioRecorder {
     autoRecord,
     volumeThreshold,
     silenceThreshold,
-    onUpadte,
+    onStart,
     onTimeUpdate,
     onFinish,
     onError,
@@ -67,7 +67,7 @@ export class AudioRecorder {
     if (volumeThreshold) this.volumeThreshold = volumeThreshold;
     // 设置静音持续时间阈值（单位：毫秒）
     if (silenceThreshold) this.silenceThreshold = silenceThreshold;
-    if (isFunction(onUpadte)) this.onUpadte = onUpadte;
+    if (isFunction(onStart)) this.onStart = onStart;
     if (isFunction(onTimeUpdate)) this.onTimeUpdate = onTimeUpdate;
     if (isFunction(onFinish)) this.onFinish = onFinish;
     if (isFunction(onError)) this.onError = onError;
@@ -79,6 +79,7 @@ export class AudioRecorder {
       } else {
         this.mediaRecorder.start(1000);
       }
+      this.onStart();
     } else {
       // 获取麦克风音频流
       navigator.mediaDevices
@@ -92,7 +93,6 @@ export class AudioRecorder {
     }
     if (!this.autoRecord) {
       this.isRecording = true;
-      this.startTimer();
     }
   }
   protected recording(stream: MediaStream) {
@@ -120,9 +120,13 @@ export class AudioRecorder {
         chunks.push(ev.data);
       }
     });
+    mediaRecorder.addEventListener("start", () => {
+      this.isRecording = true;
+      this.startTimer();
+    });
     mediaRecorder.addEventListener("pause", () => {
       const blob = new Blob(chunks);
-      this.onUpadte(blob);
+      this.onFinish(blob);
       this.blob = blob;
       chunks = [];
     });
@@ -165,8 +169,7 @@ export class AudioRecorder {
         } else {
           mediaRecorder.start(1000);
         }
-        this.isRecording = true;
-        this.startTimer();
+        this.onStart();
 
         // 重置静音计时器
         clearTimeout(silenceTimer);
@@ -175,7 +178,9 @@ export class AudioRecorder {
         // 声音低于阈值，判断为发言结束
         if (!silenceTimer) {
           silenceTimer = setTimeout(() => {
-            mediaRecorder.pause();
+            if (mediaRecorder.state === "recording") {
+              mediaRecorder.pause();
+            }
             cancelAnimationFrame(rafID);
             this.isRecording = false;
             this.stopTimer();
@@ -192,6 +197,9 @@ export class AudioRecorder {
     // 开始处理音频流
     if (this.autoRecord) {
       processAudio();
+    } else {
+      mediaRecorder.start(1000);
+      this.onStart();
     }
   }
   public stop() {
