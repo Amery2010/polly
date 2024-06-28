@@ -1,6 +1,6 @@
 {
   "name": "@xiangfa/polly",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "A high-quality & reliable TTS/STT library for Server and Browser",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -9,8 +9,7 @@
   "type": "commonjs",
   "scripts": {
     "start": "tsc --watch",
-    "build": "rimraf ./dist && tsc",
-    "publish": "npm publish"
+    "build": "rimraf ./dist && tsc"
   },
   "keywords": [],
   "author": "Amery2010 <amery@xiangfa.org>",
