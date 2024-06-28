@@ -51,15 +51,14 @@ const edgeVoiceList: Record<string, string[]> = {
     "zh-CN-YunyangNeural",
     "zh-CN-liaoning-XiaobeiNeural",
     "zh-CN-shaanxi-XiaoniNeural",
-    "zh-HK-HiuGaaiNeural",
-    "zh-HK-HiuMaanNeural",
-    "zh-HK-WanLungNeural",
   ],
-
   "zh-TW": [
     "zh-TW-HsiaoChenNeural",
     "zh-TW-YunJheNeural",
     "zh-TW-HsiaoYuNeural",
+    "zh-HK-HiuGaaiNeural",
+    "zh-HK-HiuMaanNeural",
+    "zh-HK-WanLungNeural",
   ],
 };
 

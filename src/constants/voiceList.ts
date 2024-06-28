@@ -24,6 +24,7 @@ const voiceList: Record<string, string> = {
   "en-US-BrianMultilingualNeural": "Brian Multilingual",
   "en-US-AIGenerate1Neural": "AIGenerate1",
   "en-US-AIGenerate2Neural": "AIGenerate2",
+  "en-US-AvaNeural": "Ava",
   "en-US-AmberNeural": "Amber",
   "en-US-AnaNeural": "Ana",
   "en-US-AndrewNeural": "Andrew",
