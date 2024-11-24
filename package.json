@@ -1,6 +1,6 @@
 {
   "name": "@xiangfa/polly",
-  "version": "0.4.0",
+  "version": "0.4.2",
   "description": "A high-quality & reliable TTS/STT library for Server and Browser",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -15,12 +15,14 @@
   "author": "Amery2010 <amery@xiangfa.org>",
   "license": "GPL-3.0-only",
   "dependencies": {
+    "crypto-js": "^4.2.0",
     "fix-webm-duration": "^1.0.5",
     "query-string": "^9.0.0",
     "radash": "^12.1.0",
     "tslib": "^2.6.2"
   },
   "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
     "@types/dom-speech-recognition": "^0.0.4",
     "@types/node": "^20.11.27",
     "rimraf": "^5.0.5",
