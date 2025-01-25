@@ -74,26 +74,22 @@ export class AudioRecorder {
     if (isFunction(onError)) this.onError = onError;
   }
   public start() {
-    if (this.mediaRecorder) {
-      this.mediaRecorder.start(1000);
-    } else {
-      // 获取麦克风音频流
-      navigator.mediaDevices
-        .getUserMedia({
-          audio: {
-            sampleSize: 16,
-            channelCount: 1,
-            noiseSuppression: false,
-            echoCancellation: false,
-          },
-        })
-        .then((stream) => {
-          this.recording(stream);
-        })
-        .catch((error: Error) => {
-          this.onError(error);
-        });
-    }
+    // 获取麦克风音频流
+    navigator.mediaDevices
+      .getUserMedia({
+        audio: {
+          sampleSize: 16,
+          channelCount: 1,
+          noiseSuppression: false,
+          echoCancellation: false,
+        },
+      })
+      .then((stream) => {
+        this.recording(stream);
+      })
+      .catch((error: Error) => {
+        this.onError(error);
+      });
   }
   protected recording(stream: MediaStream) {
     let chunks: Blob[] = [];

@@ -1,6 +1,6 @@
 {
   "name": "@xiangfa/polly",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "A high-quality & reliable TTS/STT library for Server and Browser",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -13,7 +13,7 @@
   },
   "keywords": [],
   "author": "Amery2010 <amery@xiangfa.org>",
-  "license": "GPL-3.0-only",
+  "license": "MIT",
   "dependencies": {
     "crypto-js": "^4.2.0",
     "fix-webm-duration": "^1.0.5",
